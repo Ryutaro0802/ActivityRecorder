@@ -1,9 +1,18 @@
 import React, { useState } from 'react'
 import { AppLoading } from 'expo'
 import { View, StyleSheet } from 'react-native'
-import { Container, Content, Form, Item, Input, Textarea, Label, Text, Button } from 'native-base'
+import { Container, Content, Form, Item, Input, Textarea, Label, Text, Button, Card, CardItem, Body } from 'native-base'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
+
+const items = [
+  {
+    id: 0,
+    description: 'description',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  }
+]
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
@@ -16,6 +25,7 @@ export default function App() {
   const press = () => {
     console.log('onPress!')
   }
+
   if (!isReady) {
     return <AppLoading
       startAsync={loadAssets}
@@ -42,6 +52,17 @@ export default function App() {
             <Text>Click Me!</Text>
           </Button>
         </Form>
+      </Content>
+      <Content>
+        <Card>
+          <CardItem>
+            <Body>
+              <Text>
+              //Your text here
+              </Text>
+            </Body>
+          </CardItem>
+        </Card>
       </Content>
     </Container>
   )
