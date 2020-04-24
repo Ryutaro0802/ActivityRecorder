@@ -16,14 +16,30 @@ const items = [
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
+  const [items, setItems] = useState([
+    {
+      title: 'ピアノの練習',
+      body: '基礎練習をした',
+      time: 200000,
+      createdAt: '',
+      updatedAt: ''
+    }
+  ])
   const loadAssets = async () => {
     await Font.loadAsync({
       Roboto: require('./node_modules/native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('./node_modules/native-base/Fonts/Roboto_medium.ttf'),
     })
   }
+
   const press = () => {
-    console.log('onPress!')
+    setItems([...items, {
+      title: 'hoge',
+      body: 'fuga',
+      time: 20,
+      createdAt: '',
+      updatedAt: ''
+    }])
   }
 
   if (!isReady) {
@@ -53,12 +69,13 @@ export default function App() {
           </Button>
         </Form>
       </Content>
+
       <Content>
         <Card>
           <CardItem>
             <Body>
               <Text>
-              //Your text here
+                Your text here
               </Text>
             </Body>
           </CardItem>
