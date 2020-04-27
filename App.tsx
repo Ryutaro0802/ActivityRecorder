@@ -4,15 +4,7 @@ import { View, StyleSheet } from 'react-native'
 import { Container, Content, Form, Item, Input, Textarea, Label, Text, Button, Card, CardItem, Body } from 'native-base'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
-
-const items = [
-  {
-    id: 0,
-    description: 'description',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  }
-]
+import ItemCard from './components/Card/ItemCard'
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
@@ -41,6 +33,10 @@ export default function App() {
       updatedAt: ''
     }])
   }
+
+  const cards = items.map((item, index) =>
+    <ItemCard key={index} title={item.title} body={item.body} />
+    )
 
   if (!isReady) {
     return <AppLoading
@@ -71,15 +67,7 @@ export default function App() {
       </Content>
 
       <Content>
-        <Card>
-          <CardItem>
-            <Body>
-              <Text>
-                Your text here
-              </Text>
-            </Body>
-          </CardItem>
-        </Card>
+        {cards}
       </Content>
     </Container>
   )
