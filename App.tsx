@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { AppLoading } from 'expo'
-import { View, StyleSheet } from 'react-native'
-import { Container, Content, Form, Item, Input, Textarea, Label, Text, Button, Card, CardItem, Body } from 'native-base'
+import { StyleSheet } from 'react-native'
+import { Container, Content } from 'native-base'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 import ItemCard from './components/Card/ItemCard'
+import NewActivityForm from './components/Form/NewActivityItemForm'
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
@@ -17,6 +18,7 @@ export default function App() {
       updatedAt: ''
     }
   ])
+
   const loadAssets = async () => {
     await Font.loadAsync({
       Roboto: require('./node_modules/native-base/Fonts/Roboto.ttf'),
@@ -24,19 +26,19 @@ export default function App() {
     })
   }
 
-  const press = () => {
-    setItems([...items, {
-      title: 'hoge',
-      body: 'fuga',
-      time: 20,
-      createdAt: '',
-      updatedAt: ''
-    }])
-  }
+  // const press = () => {
+  //   setItems([...items, {
+  //     title: 'hoge',
+  //     body: 'fuga',
+  //     time: 20,
+  //     createdAt: '',
+  //     updatedAt: ''
+  //   }])
+  // }
 
   const cards = items.map((item, index) =>
     <ItemCard key={index} title={item.title} body={item.body} />
-    )
+  )
 
   if (!isReady) {
     return <AppLoading
@@ -47,23 +49,7 @@ export default function App() {
   return (
     <Container style={styles.container}>
       <Content>
-        <Form>
-          <Item inlineLabel>
-            <Label>Title</Label>
-            <Input />
-          </Item>
-          <Item inlineLabel>
-            <Label>Time</Label>
-            <Input />
-          </Item>
-          <View style={styles.textAreaContainer}>
-            <Textarea rowSpan={5} underline bordered placeholder="Memo" />
-          </View>
-
-          <Button onPress={press}>
-            <Text>Click Me!</Text>
-          </Button>
-        </Form>
+        <NewActivityForm />
       </Content>
 
       <Content>
