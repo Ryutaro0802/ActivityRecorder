@@ -6,6 +6,7 @@ import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 import ItemCard from './components/Card/ItemCard'
 import NewActivityForm from './components/Form/NewActivityItemForm'
+import { ActivityItem } from './types'
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
@@ -26,15 +27,9 @@ export default function App() {
     })
   }
 
-  // const press = () => {
-  //   setItems([...items, {
-  //     title: 'hoge',
-  //     body: 'fuga',
-  //     time: 20,
-  //     createdAt: '',
-  //     updatedAt: ''
-  //   }])
-  // }
+  const registerItem = (newItem: ActivityItem) => {
+    console.log('newItem', newItem)
+  }
 
   const cards = items.map((item, index) =>
     <ItemCard key={index} title={item.title} body={item.body} />
@@ -49,7 +44,7 @@ export default function App() {
   return (
     <Container style={styles.container}>
       <Content>
-        <NewActivityForm />
+        <NewActivityForm registerItem={registerItem} />
       </Content>
 
       <Content>
