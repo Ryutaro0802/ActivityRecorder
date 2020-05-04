@@ -5,8 +5,14 @@ import { Container, Content } from 'native-base'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 import ItemCard from './src/components/Card/ItemCard'
-import NewActivityForm from './src/components/Form/NewActivityItemForm'
+import ActivityItemContainer from './src/components/container/ActivityItemContainer'
 import { ActivityItem } from './src/types'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import activityItemReducer, { initialState } from './src/store/activityItems/reducers'
+
+
+const store = createStore(activityItemReducer, initialState)
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
@@ -42,15 +48,18 @@ export default function App() {
     />
   }
   return (
-    <Container style={styles.container}>
-      <Content>
-        <NewActivityForm registerItem={registerItem} />
-      </Content>
+    <Provider store={store}>
+      <Container style={styles.container}>
+        <Content>
+          <ActivityItemContainer />
+        </Content>
 
-      <Content>
-        {cards}
-      </Content>
-    </Container>
+        <Content>
+          {cards}
+        </Content>
+      </Container>
+
+    </Provider>
   )
 }
 

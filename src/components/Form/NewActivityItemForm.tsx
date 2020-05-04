@@ -6,9 +6,13 @@ import { ActivityItem } from '../../types'
 
 interface NewActivityItemFormProps {
     registerItem: (newItem: ActivityItem) => void
+    add: (item: ActivityItem) => void
 }
 
-const NewActivityItemForm: FC<NewActivityItemFormProps> = ({ registerItem }) => {
+const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
+    registerItem,
+    add = () => {}
+ }) => {
     const [title, setTitle] = useState('')
     const [hour, setHour] = useState(0)
     const [minutes, setMinutes] = useState(0)
@@ -33,6 +37,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({ registerItem }) => 
     }
     const createNewItem = () => {
         const newItem: ActivityItem = {
+            id: 'id',
             title,
             hour,
             minutes,
@@ -41,7 +46,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({ registerItem }) => 
             createdAt: dayjs().toDate(),
         }
         clearForm()
-        registerItem(newItem)
+        add(newItem)
     }
 
     return (
