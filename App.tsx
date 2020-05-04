@@ -4,9 +4,9 @@ import { StyleSheet } from 'react-native'
 import { Container, Content } from 'native-base'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
-import ItemCard from './components/Card/ItemCard'
-import NewActivityForm from './components/Form/NewActivityItemForm'
-import { ActivityItem } from './types'
+import ItemCard from './src/components/Card/ItemCard'
+import NewActivityForm from './src/components/Form/NewActivityItemForm'
+import { ActivityItem } from './src/types'
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
