@@ -5,7 +5,7 @@ import { Container, Content } from 'native-base'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
 import ItemCard from './src/components/Card/ItemCard'
-import ActivityItemContainer from './src/components/container/ActivityItemContainer'
+import ActivityItemForm from './src/components/container/ActivityItemForm'
 import { ActivityItem } from './src/types'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
@@ -51,7 +51,7 @@ export default function App() {
     <Provider store={store}>
       <Container style={styles.container}>
         <Content>
-          <ActivityItemContainer />
+          <ActivityItemForm />
         </Content>
 
         <Content>
