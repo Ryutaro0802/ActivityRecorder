@@ -28,11 +28,10 @@ const activityItemReducer: Reducer<ActivityItemState, ActivityItemAction> = (
             }
         case ActivityItemActionType.EDIT:
             const editedItems = state.activityItems.map(item => {
-                if (item.id !== action.item.id) {
-                    return item
-                } else {
+                if (item.id === action.item.id) {
                     return action.item
                 }
+                return item
             })
             return {
                 ...state,

@@ -10,7 +10,6 @@ interface NewActivityItemFormProps {
 }
 
 const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
-    registerItem,
     add = () => {}
  }) => {
     const [title, setTitle] = useState('')
