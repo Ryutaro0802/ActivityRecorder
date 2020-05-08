@@ -15,30 +15,33 @@ const activityItemReducer: Reducer<ActivityItemState, ActivityItemAction> = (
     action: ActivityItemAction
 ): ActivityItemState => {
     switch (action.type) {
-        case ActivityItemActionType.ADD:
+        case ActivityItemActionType.ADD: {
             return {
                 ...state,
                 activityItems: [...state.activityItems, action.item]
             }
-        case ActivityItemActionType.REMOVE:
+        }
+        case ActivityItemActionType.REMOVE: {
             const removedItems = state.activityItems.filter(item => item.id !== action.item.id)
             return {
                 ...state,
                 activityItems: removedItems
             }
-        case ActivityItemActionType.EDIT:
+        }
+        case ActivityItemActionType.EDIT: {
             const editedItems = state.activityItems.map(item => {
-                if (item.id !== action.item.id) {
-                    return item
-                } else {
+                if (item.id === action.item.id) {
                     return action.item
                 }
+                return item
             })
             return {
                 ...state,
                 activityItems: editedItems
             }
+        }
         default: {
+            // eslint-disable-next-line no-unused-vars
             const _: never = action.type
             return state
         }

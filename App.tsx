@@ -3,10 +3,9 @@ import { AppLoading } from 'expo'
 import { StyleSheet } from 'react-native'
 import { Container, Content } from 'native-base'
 import * as Font from 'expo-font'
-import { Ionicons } from '@expo/vector-icons'
+// import { Ionicons } from '@expo/vector-icons'
 import ItemCard from './src/components/Card/ItemCard'
 import ActivityItemForm from './src/containers/ActivityItemForm'
-import { ActivityItem } from './src/types'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import activityItemReducer, { initialState } from './src/store/activityItems/reducers'
@@ -16,7 +15,7 @@ const store = createStore(activityItemReducer, initialState)
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
-  const [items, setItems] = useState([
+  const [items] = useState([
     {
       title: 'ピアノの練習',
       body: '基礎練習をした',
@@ -31,10 +30,6 @@ export default function App() {
       Roboto: require('./node_modules/native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('./node_modules/native-base/Fonts/Roboto_medium.ttf'),
     })
-  }
-
-  const registerItem = (newItem: ActivityItem) => {
-    console.log('newItem', newItem)
   }
 
   const cards = items.map((item, index) =>
@@ -58,7 +53,6 @@ export default function App() {
           {cards}
         </Content>
       </Container>
-
     </Provider>
   )
 }
