@@ -1,28 +1,27 @@
-import { ActivityItem } from '../../types'
+import { ActivityItem } from "../../types";
 
 export enum ActivityItemActionType {
-    ADD = 'ActivityItemAdd',
-    EDIT = 'ActivityItemEdit',
-    REMOVE = 'ActivityItemDelete'
+  ADD = "ActivityItemAdd",
+  EDIT = "ActivityItemEdit",
+  REMOVE = "ActivityItemDelete",
 }
 
 export interface ActivityItemAction {
-    type: ActivityItemActionType,
-    item?: ActivityItem
+  type: ActivityItemActionType;
+  item?: ActivityItem;
 }
 
 export const add = (item: ActivityItem): ActivityItemAction => ({
-    item,
-    type: ActivityItemActionType.ADD
-})
+  item,
+  type: ActivityItemActionType.ADD,
+});
 
 export const edit = (item: ActivityItem): ActivityItemAction => ({
-    item,
-    type: ActivityItemActionType.EDIT
-})
+  item,
+  type: ActivityItemActionType.EDIT,
+});
 
 export const remove = (item: ActivityItem): ActivityItemAction => ({
-    item,
-    type: ActivityItemActionType.REMOVE
-})
-
+  item,
+  type: ActivityItemActionType.REMOVE,
+});
