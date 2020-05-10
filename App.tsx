@@ -7,7 +7,9 @@ import * as Font from "expo-font";
 import ActivityItemForm from "./src/containers/ActivityItemForm";
 import ActivityItemList from "./src/containers/ActivityItemList";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
+
 import activityItemReducer, {
   initialState,
 } from "./src/services/activityItems/reducers";
