@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { ActivityItemAction, ActivityItemActionType } from "./actions";
-import { ActivityItem } from "../../";
+import { ActivityItem } from "./models";
 
 export interface ActivityItemState {
   activityItems: ActivityItem[];

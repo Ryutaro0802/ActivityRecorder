@@ -16,12 +16,12 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
   const [title, setTitle] = useState("");
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [memo, setMemo] = useState("");
+  const [body, setBody] = useState("");
   const changeTitle = (title: string) => {
     setTitle(title);
   };
-  const changeMemo = (memo: string) => {
-    setMemo(memo);
+  const changeBody = (body: string) => {
+    setBody(body);
   };
   const changeHour = (hour: number) => {
     setHour(hour);
@@ -31,7 +31,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
   };
   const clearForm = () => {
     setTitle("");
-    setMemo("");
+    setBody("");
     setHour(0);
     setMinutes(0);
   };
@@ -39,13 +39,14 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
     const newItem: ActivityItem = {
       id: "id",
       title,
+      body,
       hour,
       minutes,
-      memo,
       updatedAt: dayjs().toDate(),
       createdAt: dayjs().toDate(),
     };
     clearForm();
+    console.log("add", add);
     add(newItem);
     console.log(activityItems);
   };
@@ -80,12 +81,12 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
         </View>
         <View style={styles.textAreaContainer}>
           <Textarea
-            value={memo}
+            value={body}
             rowSpan={5}
             underline
             bordered
             placeholder="Memo"
-            onChangeText={(memo) => changeMemo(memo)}
+            onChangeText={(body) => changeBody(body)}
           />
         </View>
         <Button block transparent onPress={createNewItem}>

@@ -5,7 +5,7 @@ import { Container, Content } from "native-base";
 import * as Font from "expo-font";
 // import { Ionicons } from '@expo/vector-icons'
 import ItemCard from "./src/components/Card/ItemCard";
-import ActivityItemForm from "./src/containers/ActivityItem";
+import ActivityItemForm from "./src/components/Form/NewActivityItemForm";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import activityItemReducer, {
@@ -16,7 +16,7 @@ const store = createStore(activityItemReducer, initialState);
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
-  const [items] = useState([
+  const [activityItems] = useState([
     {
       title: "ピアノの練習",
       body: "基礎練習をした",
@@ -33,7 +33,7 @@ export default function App() {
     });
   };
 
-  const cards = items.map((item, index) => (
+  const cards = activityItems.map((item, index) => (
     <ItemCard key={index} title={item.title} body={item.body} />
   ));
 
