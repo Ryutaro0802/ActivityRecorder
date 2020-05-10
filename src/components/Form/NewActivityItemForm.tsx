@@ -46,9 +46,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
       createdAt: dayjs().toDate(),
     };
     clearForm();
-    console.log("add", add);
     add(newItem);
-    console.log(activityItems);
   };
 
   return (

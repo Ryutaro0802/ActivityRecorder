@@ -1,25 +1,25 @@
-import React, { FC, useState } from "react";
-import { Form, Item, Label, Input, Textarea, Button, Text } from "native-base";
+import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
-import dayjs from "dayjs";
 import ItemCard from "../Card/ItemCard";
 import { ActivityItem } from "../../services/activityItems/models";
 
-interface NewActivityItemFormProps {
+interface ActivityItemListProps {
   activityItems: ActivityItem[];
 }
 
-const ActivityItemList: FC<NewActivityItemFormProps> = ({
+const ActivityItemList: FC<ActivityItemListProps> = ({
   activityItems = [],
 }) => {
   return (
     <>
       {activityItems.map((activityItem) => {
-        <ItemCard
-          key={activityItem.id}
-          title={activityItem.title}
-          body={activityItem.body}
-        />;
+        return (
+          <ItemCard
+            key={activityItem.id}
+            title={activityItem.title}
+            body={activityItem.body}
+          />
+        );
       })}
     </>
   );
