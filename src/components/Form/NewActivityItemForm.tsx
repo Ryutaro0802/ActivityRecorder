@@ -5,11 +5,12 @@ import dayjs from "dayjs";
 import { ActivityItem } from "../../types";
 
 interface NewActivityItemFormProps {
-  registerItem: (newItem: ActivityItem) => void;
+  activityItems: ActivityItem[];
   add: (item: ActivityItem) => void;
 }
 
 const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
+  activityItems = [],
   add = () => {},
 }) => {
   const [title, setTitle] = useState("");
@@ -46,6 +47,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
     };
     clearForm();
     add(newItem);
+    console.log(activityItems);
   };
 
   return (
@@ -55,6 +57,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
           <Label>Title</Label>
           <Input value={title} onChangeText={(title) => changeTitle(title)} />
         </Item>
+
         <View style={styles.timeTextBoxes}>
           <View style={styles.timeTextBox}>
             <Item inlineLabel>

@@ -43,8 +43,9 @@ const activityItemReducer: Reducer<ActivityItemState, ActivityItemAction> = (
       };
     }
     default: {
-      // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _: never = action.type;
+
       return state;
     }
   }
