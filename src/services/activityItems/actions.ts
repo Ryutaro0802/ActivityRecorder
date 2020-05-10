@@ -1,4 +1,4 @@
-import { ActivityItem } from "../../types";
+import { ActivityItem } from "../../services/activityItems/models";
 
 export enum ActivityItemActionType {
   ADD = "ActivityItemAdd",

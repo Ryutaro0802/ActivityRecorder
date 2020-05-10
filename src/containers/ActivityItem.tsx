@@ -1,9 +1,9 @@
-import { ActivityItem } from "../types";
+import { ActivityItem } from "../services/activityItems/models";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import NewActivityItemForm from "../components/Form/NewActivityItemForm";
-import { add, edit, remove } from "../store/activityItems/actions";
-import { ActivityItemState } from "../store/activityItems/reducers";
+import { add, edit, remove } from "../services/activityItems/actions";
+import { ActivityItemState } from "../services/activityItems/reducers";
 
 interface StateProps {
   activityItems: ActivityItem[];

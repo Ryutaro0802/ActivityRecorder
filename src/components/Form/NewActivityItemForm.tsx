@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { Form, Item, Label, Input, Textarea, Button, Text } from "native-base";
 import { View, StyleSheet } from "react-native";
 import dayjs from "dayjs";
-import { ActivityItem } from "../../types";
+import { ActivityItem } from "../../services/activityItems/models";
 
 interface NewActivityItemFormProps {
   activityItems: ActivityItem[];

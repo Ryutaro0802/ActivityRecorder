@@ -5,12 +5,12 @@ import { Container, Content } from "native-base";
 import * as Font from "expo-font";
 // import { Ionicons } from '@expo/vector-icons'
 import ItemCard from "./src/components/Card/ItemCard";
-import ActivityItemForm from "./src/containers/ActivityItemForm";
+import ActivityItemForm from "./src/containers/ActivityItem";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import activityItemReducer, {
   initialState,
-} from "./src/store/activityItems/reducers";
+} from "./src/services/activityItems/reducers";
 
 const store = createStore(activityItemReducer, initialState);
 
