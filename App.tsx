@@ -4,38 +4,26 @@ import { StyleSheet } from "react-native";
 import { Container, Content } from "native-base";
 import * as Font from "expo-font";
 // import { Ionicons } from '@expo/vector-icons'
-import ItemCard from "./src/components/Card/ItemCard";
 import ActivityItemForm from "./src/containers/ActivityItemForm";
+import ActivityItemList from "./src/containers/ActivityItemList";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import activityItemReducer, {
-  initialState,
-} from "./src/store/activityItems/reducers";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
 
-const store = createStore(activityItemReducer, initialState);
+import activityItemReducer from "./src/services/activityItems/reducers";
+import rootSaga from "./src/services/activityItems/saga";
+
+const sagaMiddleWare = createSagaMiddleware();
+const store = createStore(activityItemReducer, applyMiddleware(sagaMiddleWare));
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
-  const [items] = useState([
-    {
-      title: "ピアノの練習",
-      body: "基礎練習をした",
-      time: 200000,
-      createdAt: "",
-      updatedAt: "",
-    },
-  ]);
-
   const loadAssets = async () => {
     await Font.loadAsync({
       Roboto: require("./node_modules/native-base/Fonts/Roboto.ttf"),
       Roboto_medium: require("./node_modules/native-base/Fonts/Roboto_medium.ttf"),
     });
   };
-
-  const cards = items.map((item, index) => (
-    <ItemCard key={index} title={item.title} body={item.body} />
-  ));
 
   if (!isReady) {
     return (
@@ -49,11 +37,15 @@ export default function App() {
           <ActivityItemForm />
         </Content>
 
-        <Content>{cards}</Content>
+        <Content>
+          <ActivityItemList />
+        </Content>
       </Container>
     </Provider>
   );
 }
+
+sagaMiddleWare.run(rootSaga);
 
 const styles = StyleSheet.create({
   container: {

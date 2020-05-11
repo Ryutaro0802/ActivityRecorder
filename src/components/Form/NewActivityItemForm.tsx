@@ -2,25 +2,26 @@ import React, { FC, useState } from "react";
 import { Form, Item, Label, Input, Textarea, Button, Text } from "native-base";
 import { View, StyleSheet } from "react-native";
 import dayjs from "dayjs";
-import { ActivityItem } from "../../types";
+import { ActivityItem } from "../../services/activityItems/models";
 
 interface NewActivityItemFormProps {
-  registerItem: (newItem: ActivityItem) => void;
+  activityItems: ActivityItem[];
   add: (item: ActivityItem) => void;
 }
 
 const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
+  activityItems = [],
   add = () => {},
 }) => {
   const [title, setTitle] = useState("");
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [memo, setMemo] = useState("");
+  const [body, setBody] = useState("");
   const changeTitle = (title: string) => {
     setTitle(title);
   };
-  const changeMemo = (memo: string) => {
-    setMemo(memo);
+  const changeBody = (body: string) => {
+    setBody(body);
   };
   const changeHour = (hour: number) => {
     setHour(hour);
@@ -30,7 +31,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
   };
   const clearForm = () => {
     setTitle("");
-    setMemo("");
+    setBody("");
     setHour(0);
     setMinutes(0);
   };
@@ -38,9 +39,9 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
     const newItem: ActivityItem = {
       id: "id",
       title,
+      body,
       hour,
       minutes,
-      memo,
       updatedAt: dayjs().toDate(),
       createdAt: dayjs().toDate(),
     };
@@ -55,6 +56,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
           <Label>Title</Label>
           <Input value={title} onChangeText={(title) => changeTitle(title)} />
         </Item>
+
         <View style={styles.timeTextBoxes}>
           <View style={styles.timeTextBox}>
             <Item inlineLabel>
@@ -77,12 +79,12 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
         </View>
         <View style={styles.textAreaContainer}>
           <Textarea
-            value={memo}
+            value={body}
             rowSpan={5}
             underline
             bordered
             placeholder="Memo"
-            onChangeText={(memo) => changeMemo(memo)}
+            onChangeText={(body) => changeBody(body)}
           />
         </View>
         <Button block transparent onPress={createNewItem}>
