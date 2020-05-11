@@ -10,6 +10,7 @@ interface ActivityItemListProps {
 const ActivityItemList: FC<ActivityItemListProps> = ({
   activityItems = [],
 }) => {
+  console.log(activityItems);
   return (
     <>
       {activityItems.map((activityItem) => {

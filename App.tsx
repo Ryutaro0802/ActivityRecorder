@@ -10,11 +10,11 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 
-import activityItemReducer, {
-  initialState,
-} from "./src/services/activityItems/reducers";
+import activityItemReducer from "./src/services/activityItems/reducers";
+import rootSaga from "./src/services/activityItems/saga";
 
-const store = createStore(activityItemReducer, initialState);
+const sagaMiddleWare = createSagaMiddleware();
+const store = createStore(activityItemReducer, applyMiddleware(sagaMiddleWare));
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -44,6 +44,8 @@ export default function App() {
     </Provider>
   );
 }
+
+sagaMiddleWare.run(rootSaga);
 
 const styles = StyleSheet.create({
   container: {

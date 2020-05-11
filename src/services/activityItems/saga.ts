@@ -6,7 +6,8 @@ import { getActivityItemsFactory } from "./storageAccess";
 
 function* runGetItems() {
   const storageAccessFactory = getActivityItemsFactory();
-  const items = yield call(storageAccessFactory);
+  const storageItem = yield call(storageAccessFactory);
+  const items = storageItem || [];
   yield put(getItems.succeed({ items }));
 }
 
