@@ -38,6 +38,22 @@ const activityItemReducer: Reducer<ActivityItemState, ActivityItemAction> = (
         isLoading: false,
       };
     }
+    case ActivityItemActionType.ADD_START: {
+      return {
+        ...state,
+      };
+    }
+    case ActivityItemActionType.ADD_SUCCEED: {
+      return {
+        ...state,
+        activityItems: [...state.activityItems, action.payload.addItem.item],
+      };
+    }
+    case ActivityItemActionType.ADD_FAIL: {
+      return {
+        ...state,
+      };
+    }
     // case ActivityItemActionType.ADD: {
     //   return {
     //     ...state,
