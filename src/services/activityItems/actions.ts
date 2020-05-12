@@ -40,14 +40,14 @@ export const getItems = {
   }),
 };
 
-export const addItems = {
-  start: (addItem: AddActivityItem) => ({
+export const addItem = {
+  start: (additionalItem: AddActivityItem) => ({
     type: ActivityItemActionType.ADD_START as typeof ActivityItemActionType.ADD_START,
-    payload: { addItem },
+    payload: { additionalItem },
   }),
-  succeed: (addItem: AddActivityItem) => ({
+  succeed: (additionalItem: AddActivityItem) => ({
     type: ActivityItemActionType.ADD_SUCCEED as typeof ActivityItemActionType.ADD_SUCCEED,
-    payload: { addItem },
+    payload: { additionalItem },
   }),
   fail: (error: any) => ({
     type: ActivityItemActionType.ADD_FAIL as typeof ActivityItemActionType.ADD_FAIL,
@@ -74,6 +74,6 @@ export type ActivityItemAction =
   | ReturnType<typeof getItems.start>
   | ReturnType<typeof getItems.succeed>
   | ReturnType<typeof getItems.fail>
-  | ReturnType<typeof addItems.start>
-  | ReturnType<typeof addItems.succeed>
-  | ReturnType<typeof addItems.fail>;
+  | ReturnType<typeof addItem.start>
+  | ReturnType<typeof addItem.succeed>
+  | ReturnType<typeof addItem.fail>;
