@@ -6,8 +6,8 @@ const storageKey = StorageKeys.ACTIVITY_ITEM;
 
 export const getActivityItemsFactory = () => {
   const getActivityItems = async () => {
+    // AsyncStorage.clear();
     const items = await AsyncStorage.getItem(storageKey);
-    console.log(JSON.parse(items));
     const activityItems: ActivityItem[] = JSON.parse(items);
     return activityItems;
   };
@@ -16,9 +16,12 @@ export const getActivityItemsFactory = () => {
 
 export const addActivityItemFactory = () => {
   const addActivityItem = async (item: ActivityItem) => {
-    const stringObject = JSON.stringify(item);
+    const activityItems: ActivityItem[] =
+      JSON.parse(await AsyncStorage.getItem(storageKey)) || [];
+    console.log(activityItems);
+    const addedActivityItems = JSON.stringify([item, ...activityItems]);
     try {
-      await AsyncStorage.setItem(storageKey, stringObject);
+      await AsyncStorage.setItem(storageKey, addedActivityItems);
     } catch (e) {
       console.error(e);
     }
