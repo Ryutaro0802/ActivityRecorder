@@ -5,13 +5,11 @@ import dayjs from "dayjs";
 import { ActivityItem } from "../../services/activityItems/models";
 
 interface NewActivityItemFormProps {
-  activityItems: ActivityItem[];
-  add: (item: ActivityItem) => void;
+  addActivityItem: (item: ActivityItem) => void;
 }
 
 const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
-  activityItems = [],
-  add = () => {},
+  addActivityItem = () => {},
 }) => {
   const [title, setTitle] = useState("");
   const [hour, setHour] = useState(0);
@@ -46,7 +44,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
       createdAt: dayjs().toDate(),
     };
     clearForm();
-    add(newItem);
+    addActivityItem(newItem);
   };
 
   return (

@@ -1,28 +1,40 @@
+import React, { FC, useEffect } from "react";
 import { ActivityItem } from "../services/activityItems/models";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import NewActivityItemForm from "../components/Form/NewActivityItemForm";
-import { add, edit, remove } from "../services/activityItems/actions";
 import { ActivityItemState } from "../services/activityItems/reducers";
+import { addItem, AddActivityItem } from "../services/activityItems/actions";
 
 interface StateProps {
   activityItems: ActivityItem[];
 }
 
 interface DispatchProps {
-  add: (item: ActivityItem) => void;
-  edit: (item: ActivityItem) => void;
-  remove: (item: ActivityItem) => void;
+  addItemStart: (item: AddActivityItem) => void;
 }
+
+type EnhancedNewActivityFormProps = StateProps & DispatchProps;
 
 const mapStateToProps = (state: ActivityItemState): StateProps => ({
   activityItems: state.activityItems,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps =>
-  bindActionCreators({ add, edit, remove }, dispatch);
+  bindActionCreators(
+    {
+      addItemStart: (item: AddActivityItem) => addItem.start(item),
+    },
+    dispatch
+  );
+
+const NewActivityItemFormContainer: FC<EnhancedNewActivityFormProps> = ({
+  addItemStart,
+}) => {
+  return <NewActivityItemForm addActivityItem={addItemStart} />;
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewActivityItemForm);
+)(NewActivityItemFormContainer);
