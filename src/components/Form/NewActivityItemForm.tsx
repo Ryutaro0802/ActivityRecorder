@@ -3,6 +3,7 @@ import { Form, Item, Label, Input, Textarea, Button, Text } from "native-base";
 import { View, StyleSheet } from "react-native";
 import dayjs from "dayjs";
 import { ActivityItem } from "../../services/activityItems/models";
+import { v4 as uuidv4 } from "uuid";
 
 interface NewActivityItemFormProps {
   addActivityItem: (item: ActivityItem) => void;
@@ -35,7 +36,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
   };
   const createNewItem = () => {
     const newItem: ActivityItem = {
-      id: "id",
+      id: uuidv4(),
       title,
       body,
       hour,

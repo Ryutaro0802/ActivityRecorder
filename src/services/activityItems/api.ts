@@ -18,7 +18,6 @@ export const addActivityItemFactory = () => {
   const addActivityItem = async (item: ActivityItem) => {
     const activityItems: ActivityItem[] =
       JSON.parse(await AsyncStorage.getItem(storageKey)) || [];
-    console.log(activityItems);
     const addedActivityItems = JSON.stringify([item, ...activityItems]);
     try {
       await AsyncStorage.setItem(storageKey, addedActivityItems);
