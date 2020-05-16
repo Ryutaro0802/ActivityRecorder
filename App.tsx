@@ -8,16 +8,15 @@ import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ListScreen from "./src/components/Screen/ListScreen";
+import FormScreen from "./src/components/Screen/FormScreen";
 
 import activityItemReducer from "./src/services/activityItems/reducers";
 import rootSaga from "./src/services/activityItems/saga";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(activityItemReducer, applyMiddleware(sagaMiddleWare));
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -47,9 +46,10 @@ export default function App() {
     // </Provider>
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="List" component={ListScreen} />
-        </Stack.Navigator>
+        <Tab.Navigator>
+          <Tab.Screen name="List" component={ListScreen} />
+          <Tab.Screen name="Form" component={FormScreen} />
+        </Tab.Navigator>
       </NavigationContainer>
     </Provider>
   );
