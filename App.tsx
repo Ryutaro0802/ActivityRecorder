@@ -33,17 +33,6 @@ export default function App() {
     );
   }
   return (
-    // <Provider store={store}>
-    //   <Container style={styles.container}>
-    //     <Content>
-    //       <ActivityItemForm />
-    //     </Content>
-
-    //     <Content>
-    //       <ActivityItemList />
-    //     </Content>
-    //   </Container>
-    // </Provider>
     <Provider store={store}>
       <NavigationContainer>
         <Tab.Navigator>
