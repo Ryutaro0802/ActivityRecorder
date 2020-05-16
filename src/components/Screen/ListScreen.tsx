@@ -1,13 +1,8 @@
-import React, { FC } from "react";
-import ActivityItemList from "./src/containers/ActivityItemList";
-import { View, Text } from "react-native";
+import React from "react";
+import ActivityItemList from "../../containers/ActivityItemList";
 
 function ListScreen() {
-  return (
-    <View>
-      <Text>ListScreen</Text>
-    </View>
-  );
+  return <ActivityItemList />;
 }
 
 export default ListScreen;

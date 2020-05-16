@@ -1,12 +1,8 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
 import { AppLoading } from "expo";
-import { StyleSheet, View, Text } from "react-native";
-import { Container, Content } from "native-base";
 import * as Font from "expo-font";
 // import { Ionicons } from '@expo/vector-icons'
-import ActivityItemForm from "./src/containers/ActivityItemForm";
-import ActivityItemList from "./src/containers/ActivityItemList";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
@@ -22,14 +18,6 @@ const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(activityItemReducer, applyMiddleware(sagaMiddleWare));
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -57,23 +45,14 @@ export default function App() {
     //     </Content>
     //   </Container>
     // </Provider>
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="List" component={ListScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
 sagaMiddleWare.run(rootSaga);
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 30,
-    paddingBottom: 30,
-  },
-  textAreaContainer: {
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-});
