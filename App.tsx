@@ -1,20 +1,22 @@
+import "react-native-gesture-handler";
 import React, { useState } from "react";
 import { AppLoading } from "expo";
-import { StyleSheet } from "react-native";
-import { Container, Content } from "native-base";
 import * as Font from "expo-font";
 // import { Ionicons } from '@expo/vector-icons'
-import ActivityItemForm from "./src/containers/ActivityItemForm";
-import ActivityItemList from "./src/containers/ActivityItemList";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import ListScreen from "./src/components/Screen/ListScreen";
+import FormScreen from "./src/components/Screen/FormScreen";
 
 import activityItemReducer from "./src/services/activityItems/reducers";
 import rootSaga from "./src/services/activityItems/saga";
+import { NavigationContainer } from "@react-navigation/native";
 
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(activityItemReducer, applyMiddleware(sagaMiddleWare));
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -32,28 +34,14 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-      <Container style={styles.container}>
-        <Content>
-          <ActivityItemForm />
-        </Content>
-
-        <Content>
-          <ActivityItemList />
-        </Content>
-      </Container>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="List" component={ListScreen} />
+          <Tab.Screen name="Form" component={FormScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
 
 sagaMiddleWare.run(rootSaga);
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 30,
-    paddingBottom: 30,
-  },
-  textAreaContainer: {
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-});
