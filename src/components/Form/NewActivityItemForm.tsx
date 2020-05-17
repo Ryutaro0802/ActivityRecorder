@@ -1,5 +1,14 @@
 import React, { FC, useState } from "react";
-import { Form, Item, Label, Input, Textarea, Button, Text } from "native-base";
+import {
+  Form,
+  Item,
+  Label,
+  Input,
+  Textarea,
+  Button,
+  Text,
+  DatePicker,
+} from "native-base";
 import { View, StyleSheet } from "react-native";
 import dayjs from "dayjs";
 import { ActivityItem } from "../../services/activityItems/models";
@@ -16,6 +25,8 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [body, setBody] = useState("");
+  const [chosenDate, setDate] = useState(new Date());
+
   const changeTitle = (title: string) => {
     setTitle(title);
   };
@@ -41,8 +52,8 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
       body,
       hour,
       minutes,
-      updatedAt: dayjs().toDate(),
-      createdAt: dayjs().toDate(),
+      updatedAt: chosenDate,
+      createdAt: chosenDate,
     };
     clearForm();
     addActivityItem(newItem);
@@ -86,6 +97,19 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
             onChangeText={(body) => changeBody(body)}
           />
         </View>
+        <DatePicker
+          defaultDate={new Date()}
+          locale={"ja"}
+          timeZoneOffsetInMinutes={undefined}
+          modalTransparent={false}
+          animationType={"slide"}
+          androidMode={"default"}
+          placeHolderText={dayjs().format("YYYY-MM-DD")}
+          textStyle={{ color: "green" }}
+          placeHolderTextStyle={{ color: "#d3d3d3" }}
+          onDateChange={setDate}
+          disabled={false}
+        />
         <Button block transparent onPress={createNewItem}>
           <Text>登録</Text>
         </Button>
