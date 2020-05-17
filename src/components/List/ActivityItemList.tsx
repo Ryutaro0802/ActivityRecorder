@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import dayjs from "dayjs";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import ItemCard from "../Card/ItemCard";
 import FirstHeader from "../Heading/FirstHeader";
 import { ActivityItem } from "../../services/activityItems/models";
@@ -30,7 +30,7 @@ const ActivityItemList: FC<ActivityItemListProps> = ({
         };
         return (
           <View key={activityItem.id}>
-            {dateTitle && (
+            {dateTitle() && (
               <View style={styles.heading}>
                 <FirstHeader title={dateTitle()} />
               </View>
@@ -46,6 +46,7 @@ const ActivityItemList: FC<ActivityItemListProps> = ({
 const styles = StyleSheet.create({
   heading: {
     marginTop: 20,
+    marginBottom: 10,
   },
 });
 
