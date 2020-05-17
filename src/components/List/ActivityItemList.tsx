@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import dayjs from "dayjs";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import ItemCard from "../Card/ItemCard";
 import FirstHeader from "../Heading/FirstHeader";
 import { ActivityItem } from "../../services/activityItems/models";

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Header, Body, Title } from "native-base";
+import { Container, Content, Header, Body, Title } from "native-base";
 import ActivityItemList from "../../containers/ActivityItemList";
 
 function ListScreen() {
@@ -10,7 +10,9 @@ function ListScreen() {
           <Title>List</Title>
         </Body>
       </Header>
-      <ActivityItemList />
+      <Content>
+        <ActivityItemList />
+      </Content>
     </Container>
   );
 }
