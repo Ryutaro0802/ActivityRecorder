@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { ActivityItem } from "../../services/activityItems/models";
+import { ActivityItem } from "./models";
 
 export enum ActivityItemActionType {
   ADD_START = "ActivityItemAddStart",
@@ -11,11 +11,6 @@ export enum ActivityItemActionType {
   GET_SUCCEED = "ActivityItemGetSucceed",
   GET_FAIL = "ActivityItemGetFail",
 }
-
-// export interface ActivityItemAction {
-//   type: ActivityItemActionType;
-//   item?: ActivityItem;
-// }
 
 export interface GetActivityItemsResult {
   items: ActivityItem[];

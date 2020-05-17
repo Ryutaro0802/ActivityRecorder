@@ -1,3 +1,4 @@
+import { Tag } from "../tag/models";
 export interface ActivityItem {
   id: string;
   title: string;
@@ -6,4 +7,5 @@ export interface ActivityItem {
   minutes: number;
   createdAt: Date;
   updatedAt: Date;
+  tags?: Tag[];
 }

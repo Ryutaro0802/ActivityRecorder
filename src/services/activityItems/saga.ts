@@ -1,8 +1,7 @@
 import { all, call, fork, put, takeLatest } from "redux-saga/effects";
 import { ActivityItem } from "./models";
 
-import { ActivityItemActionType } from "./actions";
-import { getItems, addItem } from "./actions";
+import { ActivityItemActionType, getItems, addItem } from "./actions";
 import { getActivityItemsFactory, addActivityItemFactory } from "./api";
 
 function* runGetItems() {

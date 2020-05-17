@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Header, Body, Title } from "native-base";
+import { Container, Content, Header, Body, Title } from "native-base";
 import ActivityItemForm from "../../containers/ActivityItemForm";
 
 function FormScreen() {
@@ -10,7 +10,9 @@ function FormScreen() {
           <Title>Form</Title>
         </Body>
       </Header>
-      <ActivityItemForm />
+      <Content>
+        <ActivityItemForm />
+      </Content>
     </Container>
   );
 }
