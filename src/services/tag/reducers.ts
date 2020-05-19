@@ -19,6 +19,7 @@ const tagReducer: Reducer<TagState, TagAction> = (
 ): TagState => {
   switch (action.type) {
     case TagActionType.GET_START: {
+      console.log("start!!!!!!");
       return {
         ...state,
         tags: [],
@@ -38,6 +39,12 @@ const tagReducer: Reducer<TagState, TagAction> = (
         tags: [],
         isLoading: false,
       };
+    }
+    default: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const _: never = action.type;
+
+      return state;
     }
   }
 };
