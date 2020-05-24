@@ -1,18 +1,13 @@
 import { combineReducers } from "redux";
 
-import activityItemReducer, {
-  ActivityItemState,
-} from "./activityItems/reducers";
-import tagReducer, { TagState } from "./tag/reducers";
-
-export interface AppState {
-  activityItem: ActivityItemState;
-  tag: TagState;
-}
+import activityItemReducer from "./activityItems/reducers";
+import tagReducer from "./tag/reducers";
 
 const rootReducer = combineReducers({
   activityItem: activityItemReducer,
   tag: tagReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;
