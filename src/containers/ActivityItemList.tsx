@@ -5,6 +5,7 @@ import { bindActionCreators, Dispatch } from "redux";
 import ActivityItemList from "../components/List/ActivityItemList";
 import { ActivityItemState } from "../services/activityItems/reducers";
 import { getItems } from "../services/activityItems/actions";
+import { AppState } from "../services/rootReducer";
 
 interface StateProps {
   activityItems: ActivityItem[];
@@ -24,11 +25,10 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps =>
     dispatch
   );
 
-const mapStateToProps = (state: ActivityItemState): StateProps => {
-  const { activityItems } = state.activityItem;
-  console.log("activityItemssssss", activityItems);
+const mapStateToProps = (state: AppState): StateProps => {
+  const { activityItem } = state;
   return {
-    activityItems: state.activityItem.activityItems,
+    activityItems: activityItem.activityItems,
   };
 };
 
