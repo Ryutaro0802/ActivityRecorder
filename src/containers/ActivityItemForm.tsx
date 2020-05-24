@@ -4,10 +4,9 @@ import { Tag } from "../services/tag/models";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import NewActivityItemForm from "../components/Form/NewActivityItemForm";
-import { ActivityItemState } from "../services/activityItems/reducers";
-import { TagState } from "../services/tag/reducers";
 import { addItem, AddActivityItem } from "../services/activityItems/actions";
 import { getTags } from "../services/tag/actions";
+import { RootState } from "../services/rootReducer";
 
 interface StateProps {
   activityItems: ActivityItem[];
@@ -21,10 +20,14 @@ interface DispatchProps {
 
 type EnhancedNewActivityFormProps = StateProps & DispatchProps;
 
-const mapStateToProps = (state: ActivityItemState & TagState): StateProps => ({
-  activityItems: state.activityItems,
-  tags: state.tags,
-});
+const mapStateToProps = (state: RootState): StateProps => {
+  const { activityItem, tag } = state;
+
+  return {
+    activityItems: activityItem.activityItems,
+    tags: tag.tags,
+  };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps =>
   bindActionCreators(
@@ -36,13 +39,14 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps =>
   );
 
 const NewActivityItemFormContainer: FC<EnhancedNewActivityFormProps> = ({
+  tags,
   addItemStart,
   getTagsStart,
 }) => {
   useEffect(() => {
     getTagsStart();
   }, []);
-  return <NewActivityItemForm addActivityItem={addItemStart} />;
+  return <NewActivityItemForm addActivityItem={addItemStart} tags={tags} />;
 };
 
 export default connect(

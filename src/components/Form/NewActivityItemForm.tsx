@@ -17,7 +17,6 @@ import { View, StyleSheet } from "react-native";
 import dayjs from "dayjs";
 import { ActivityItem } from "../../services/activityItems/models";
 import { Tag } from "../../services/tag/models";
-import { v4 as uuidv4 } from "uuid";
 
 interface NewActivityItemFormProps {
   addActivityItem: (item: ActivityItem) => void;
@@ -54,8 +53,9 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
     setMinutes(0);
   };
   const createNewItem = () => {
+    const random = Math.round(Math.random() * 100000);
     const newItem: ActivityItem = {
-      id: uuidv4(),
+      id: random.toString(),
       title,
       body,
       hour,
