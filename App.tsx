@@ -15,8 +15,9 @@ import rootSaga from "./src/services/rootSaga";
 import { NavigationContainer } from "@react-navigation/native";
 
 const sagaMiddleWare = createSagaMiddleware();
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleWare));
+const store = createStore(rootReducer, {}, applyMiddleware(sagaMiddleWare));
 const Tab = createBottomTabNavigator();
+sagaMiddleWare.run(rootSaga);
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -43,5 +44,3 @@ export default function App() {
     </Provider>
   );
 }
-
-sagaMiddleWare.run(rootSaga);

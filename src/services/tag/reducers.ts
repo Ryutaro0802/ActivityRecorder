@@ -19,7 +19,6 @@ const tagReducer: Reducer<TagState, TagAction> = (
 ): TagState => {
   switch (action.type) {
     case TagActionType.GET_START: {
-      console.log("start!!!!!!");
       return {
         ...state,
         tags: [],

@@ -16,21 +16,24 @@ import {
 import { View, StyleSheet } from "react-native";
 import dayjs from "dayjs";
 import { ActivityItem } from "../../services/activityItems/models";
+import { Tag } from "../../services/tag/models";
 import { v4 as uuidv4 } from "uuid";
 
 interface NewActivityItemFormProps {
   addActivityItem: (item: ActivityItem) => void;
+  tags: Tag[];
 }
 
 const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
   addActivityItem = () => {},
+  tags = [],
 }) => {
   const [title, setTitle] = useState("");
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [body, setBody] = useState("");
   const [chosenDate, setDate] = useState(new Date());
-  const [selectTags, setTags] = useState([]);
+  // const [selectTags, setTags] = useState([]);
 
   const changeTitle = (title: string) => {
     setTitle(title);
@@ -105,24 +108,14 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
 
         <View>
           <Content>
-            <ListItem>
-              <CheckBox checked={true} />
-              <Body>
-                <Text>Daily Stand Up</Text>
-              </Body>
-            </ListItem>
-            <ListItem>
-              <CheckBox checked={false} />
-              <Body>
-                <Text>Discussion with Client</Text>
-              </Body>
-            </ListItem>
-            <ListItem>
-              <CheckBox checked={false} />
-              <Body>
-                <Text>Finish list Screen</Text>
-              </Body>
-            </ListItem>
+            {tags.map((tag) => (
+              <ListItem key={tag.id}>
+                <CheckBox checked={false} />
+                <Body>
+                  <Text>{tag.name}</Text>
+                </Body>
+              </ListItem>
+            ))}
           </Content>
           <Item>
             <Input placeholder="Add Label" />

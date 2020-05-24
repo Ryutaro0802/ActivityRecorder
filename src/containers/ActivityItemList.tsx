@@ -24,9 +24,13 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps =>
     dispatch
   );
 
-const mapStateToProps = (state: ActivityItemState): StateProps => ({
-  activityItems: state.activityItems,
-});
+const mapStateToProps = (state: ActivityItemState): StateProps => {
+  const { activityItems } = state.activityItem;
+  console.log("activityItemssssss", activityItems);
+  return {
+    activityItems: state.activityItem.activityItems,
+  };
+};
 
 const ActivityItemListContainer: FC<EnhancedActivityItemListProps> = ({
   activityItems,

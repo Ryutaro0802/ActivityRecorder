@@ -1,14 +1,17 @@
 import React, { FC, useEffect } from "react";
 import { ActivityItem } from "../services/activityItems/models";
+import { Tag } from "../services/tag/models";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import NewActivityItemForm from "../components/Form/NewActivityItemForm";
 import { ActivityItemState } from "../services/activityItems/reducers";
+import { TagState } from "../services/tag/reducers";
 import { addItem, AddActivityItem } from "../services/activityItems/actions";
 import { getTags } from "../services/tag/actions";
 
 interface StateProps {
   activityItems: ActivityItem[];
+  tags: Tag[];
 }
 
 interface DispatchProps {
@@ -18,8 +21,9 @@ interface DispatchProps {
 
 type EnhancedNewActivityFormProps = StateProps & DispatchProps;
 
-const mapStateToProps = (state: ActivityItemState): StateProps => ({
+const mapStateToProps = (state: ActivityItemState & TagState): StateProps => ({
   activityItems: state.activityItems,
+  tags: state.tags,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps =>

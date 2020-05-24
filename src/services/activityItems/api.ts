@@ -9,6 +9,7 @@ export const getActivityItemsFactory = () => {
     // AsyncStorage.clear();
     const items = await AsyncStorage.getItem(storageKey);
     const activityItems: ActivityItem[] = JSON.parse(items);
+
     return activityItems;
   };
   return getActivityItems;
