@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import {
+  Content,
   Form,
   Item,
   Label,
@@ -8,24 +9,30 @@ import {
   Button,
   Text,
   DatePicker,
+  ListItem,
+  CheckBox,
+  Body,
 } from "native-base";
 import { View, StyleSheet } from "react-native";
 import dayjs from "dayjs";
 import { ActivityItem } from "../../services/activityItems/models";
-import { v4 as uuidv4 } from "uuid";
+import { Tag } from "../../services/tag/models";
 
 interface NewActivityItemFormProps {
   addActivityItem: (item: ActivityItem) => void;
+  tags: Tag[];
 }
 
 const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
   addActivityItem = () => {},
+  tags = [],
 }) => {
   const [title, setTitle] = useState("");
   const [hour, setHour] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [body, setBody] = useState("");
   const [chosenDate, setDate] = useState(new Date());
+  // const [selectTags, setTags] = useState([]);
 
   const changeTitle = (title: string) => {
     setTitle(title);
@@ -46,8 +53,9 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
     setMinutes(0);
   };
   const createNewItem = () => {
+    const random = Math.round(Math.random() * 100000);
     const newItem: ActivityItem = {
-      id: uuidv4(),
+      id: random.toString(),
       title,
       body,
       hour,
@@ -97,6 +105,23 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
             onChangeText={(body) => changeBody(body)}
           />
         </View>
+
+        <View>
+          <Content>
+            {tags.map((tag) => (
+              <ListItem key={tag.id}>
+                <CheckBox checked={false} />
+                <Body>
+                  <Text>{tag.name}</Text>
+                </Body>
+              </ListItem>
+            ))}
+          </Content>
+          <Item>
+            <Input placeholder="Add Label" />
+          </Item>
+        </View>
+
         <DatePicker
           defaultDate={new Date()}
           locale={"ja"}
@@ -110,6 +135,7 @@ const NewActivityItemForm: FC<NewActivityItemFormProps> = ({
           onDateChange={setDate}
           disabled={false}
         />
+
         <Button block transparent onPress={createNewItem}>
           <Text>登録</Text>
         </Button>

@@ -3,8 +3,8 @@ import { ActivityItem } from "../services/activityItems/models";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import ActivityItemList from "../components/List/ActivityItemList";
-import { ActivityItemState } from "../services/activityItems/reducers";
 import { getItems } from "../services/activityItems/actions";
+import { RootState } from "../services/rootReducer";
 
 interface StateProps {
   activityItems: ActivityItem[];
@@ -24,9 +24,12 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps =>
     dispatch
   );
 
-const mapStateToProps = (state: ActivityItemState): StateProps => ({
-  activityItems: state.activityItems,
-});
+const mapStateToProps = (state: RootState): StateProps => {
+  const { activityItem } = state;
+  return {
+    activityItems: activityItem.activityItems,
+  };
+};
 
 const ActivityItemListContainer: FC<EnhancedActivityItemListProps> = ({
   activityItems,

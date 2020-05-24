@@ -10,13 +10,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ListScreen from "./src/components/Screen/ListScreen";
 import FormScreen from "./src/components/Screen/FormScreen";
 
-import activityItemReducer from "./src/services/activityItems/reducers";
-import rootSaga from "./src/services/activityItems/saga";
+import rootReducer from "./src/services/rootReducer";
+import rootSaga from "./src/services/rootSaga";
 import { NavigationContainer } from "@react-navigation/native";
 
 const sagaMiddleWare = createSagaMiddleware();
-const store = createStore(activityItemReducer, applyMiddleware(sagaMiddleWare));
+const store = createStore(rootReducer, {}, applyMiddleware(sagaMiddleWare));
 const Tab = createBottomTabNavigator();
+sagaMiddleWare.run(rootSaga);
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -43,5 +44,3 @@ export default function App() {
     </Provider>
   );
 }
-
-sagaMiddleWare.run(rootSaga);
